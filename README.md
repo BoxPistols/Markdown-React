@@ -71,7 +71,7 @@ test:
 TS Loader
 `$ npm i ts-loader`
 
-### add Webpack TS Setting
+### add WebPack TS Setting
 
 ```ts
 module: {
@@ -87,3 +87,5 @@ module: {
    extensions: ['.ts'],
  },
 ```
+
+`$ mv src/index.js src/index.ts`
