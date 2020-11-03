@@ -54,4 +54,16 @@ test:
 
 ## add TS
 
-\$ yarn add typescript
+`$ yarn add typescript`
+
+`$ touch tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "./dist/",
+    "target": "ES2015"
+  }
+}
+```
