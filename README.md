@@ -36,9 +36,22 @@ module.exports = {
 $ mkcd src
 $ touch index.js
 
-## add / "build": "webpack --mode=production"
+## add Build
 
+add `"build": "webpack --mode=production"`
+
+```js
 "scripts": {
 "start": "echo 'Hello! package.json'",
 "build": "webpack --mode=production"
 },
+
+```
+
+test:
+
+`$ node ./dist/index.js`
+
+## add TS
+
+\$ yarn add typescript
