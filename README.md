@@ -16,7 +16,7 @@
 }
 ```
 
-## add  / webpack.config.js
+## add / webpack.config.js
 
 ```js
 const path = require('path')
@@ -30,3 +30,15 @@ module.exports = {
   },
 }
 ```
+
+## add / index.js
+
+$ mkcd src
+$ touch index.js
+
+## add / "build": "webpack --mode=production"
+
+"scripts": {
+"start": "echo 'Hello! package.json'",
+"build": "webpack --mode=production"
+},
