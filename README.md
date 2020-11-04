@@ -89,3 +89,12 @@ module: {
 ```
 
 `$ mv src/index.js src/index.ts`
+
+#### TS Test
+
+```ts
+const log = (message: string): void => {
+  console.log(message)
+}
+log("TS go")
+```
