@@ -195,3 +195,28 @@ devServer: {
 ```
 
 `$ yarn run start`
+
+## styled-component
+
+`$ yarn add styled-components @types/styled-components`
+
+- src/index.tsx
+
+```tsx
+import * as React from 'react'
+import { render } from 'react-dom'
+import styled from 'styled-components' // add
+
+const Main = <h1>Markdown Editor + Dev Server</h1>
+
+const Header = styled.h1`
+  // add
+  color: red;
+`
+
+const Main = <Header>Markdown Editor</Header> // set
+
+render(Main, document.getElementById('app'))
+```
+
+- yarn run start
