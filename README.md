@@ -104,3 +104,62 @@ log('TS go')
 ## Add React
 
 `$ yarn add react react-dom @types/react @types/react-dom`
+
+```js
+  "dependencies": {
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "ts-loader": "^8.0.7",
+    "typescript": "^4.0.5",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
+  }
+```
+
+### webpack.config.js
+
+- entry: './src/index.ts' -> entry: './src/index.tsx'
+- test: /\.ts$/, ->  test: /\.tsx?$/
+- extensions: ['.js'] -> extensions: ['.js', '.ts', '.tsx'],
+
+### tsconfig.json
+
+add `"jsx": "react"`
+
+### src/index.ts
+
+- src/index.ts -> src/index.tsx
+
+```tsx
+import * as React from 'react'
+import { render } from 'react-dom'
+
+const Main = <h1>Markdown Editor</h1>
+
+render(Main, document.getElementById('app'))
+```
+
+- buid test
+
+### ./index.html
+
+add new
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>Markdown Editor</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="./dist/index.js"></script>
+  </body>
+</html>
+```
+
+- .gitignore
+  - `#dist` is Public
+- gitPage Push & Open
