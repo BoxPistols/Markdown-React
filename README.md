@@ -167,3 +167,31 @@ add new
 ## webpack-dev-server
 
 `$ yarn add webpack-dev-server`
+
+- Bug -> webpack-cli/bin/config-yargs
+- Do -> https://teratail.com/questions/300230 \*ıversin
+
+- pakcage.json
+
+```json
+"start": "webpack-dev-server",
+
+"devDependencies": {
+  "webpack": "^4.19.1",
+  "webpack-cli": "^3.1.0",
+  "webpack-dev-server": "^3.1.8"
+}
+```
+
+`$ yarn install`
+
+- webpack.config.js
+
+```js
+devServer: {
+   hot: true,
+   open: true,
+ }
+```
+
+`$ yarn run start`
