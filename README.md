@@ -316,3 +316,37 @@ export const Editor: React.FC = () => {
   )
 }
 ```
+
+---
+
+## Hooks(useState)
+
+```js
+const [value, setValue] = useState < string > 'initial value'
+
+const [値, 値をセットする関数] = useState < 扱う状態の型 > 初期値
+
+example:
+- useState<number>
+- useState<{ key1: string, key2: number }>
+```
+
+editor.tsx
+```tsx
+const { useState } = React
+export const Editor: React.FC = () => {
+  const [text, setText] = useState<string>('') // add
+  return (
+    <>
+      ...
+      <Wrapper>
+        <TextArea
+          onChange={(event) => { // add
+            setText(event.target.value)
+          }}
+          value={text}
+        />
+        ...
+      </Wrapper>
+    </>...
+```
