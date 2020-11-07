@@ -1,4 +1,4 @@
-# markdown-editor
+# Markdown-editor by React
 
 ## add / package.json
 
@@ -89,3 +89,18 @@ module: {
 ```
 
 `$ mv src/index.js src/index.ts`
+
+#### TS Test
+
+```ts
+const log = (message: string): void => {
+  console.log(message)
+}
+log('TS go')
+```
+
+---
+
+## Add React
+
+`$ yarn add react react-dom @types/react @types/react-dom`
