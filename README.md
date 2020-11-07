@@ -1,4 +1,4 @@
-# markdown-editor
+# Markdown-editor by React
 
 ## add / package.json
 
@@ -96,5 +96,11 @@ module: {
 const log = (message: string): void => {
   console.log(message)
 }
-log("TS go")
+log('TS go')
 ```
+
+---
+
+## Add React
+
+`$ yarn add react react-dom @types/react @types/react-dom`
