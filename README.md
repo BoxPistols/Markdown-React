@@ -332,6 +332,7 @@ example:
 ```
 
 editor.tsx
+
 ```tsx
 const { useState } = React // import useState
 export const Editor: React.FC = () => {
@@ -344,9 +345,15 @@ export const Editor: React.FC = () => {
           onChange={(event) => { // event
             setText(event.target.value) // setFunc(target.val)
           }}
-          value={text} // value={ val }
+          value={text} // value={val}
         />
         ...
       </Wrapper>
     </>...
 ```
+
+---
+
+## Markdown
+
+`$ yarn add react-markdown`

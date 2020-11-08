@@ -2,6 +2,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 const { useState } = React
 
+import * as ReactMarkdown from 'react-markdown'
+
 const Header = styled.header`
   font-size: 1.5rem;
   height: 2rem;
@@ -58,7 +60,9 @@ export const Editor: React.FC = () => {
           }}
           value={text}
         />
-        <Preview>プレビューエリア</Preview>
+        <Preview>
+          <ReactMarkdown source={text}/>
+        </Preview>
       </Wrapper>
     </>
   )
