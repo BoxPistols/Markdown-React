@@ -333,18 +333,18 @@ example:
 
 editor.tsx
 ```tsx
-const { useState } = React
+const { useState } = React // import useState
 export const Editor: React.FC = () => {
-  const [text, setText] = useState<string>('') // add
+  const [text, setText] = useState<string>('') // add [val, setFunc] = useState<type>(init)
   return (
     <>
       ...
       <Wrapper>
         <TextArea
-          onChange={(event) => { // add
-            setText(event.target.value)
+          onChange={(event) => { // event
+            setText(event.target.value) // setFunc(target.val)
           }}
-          value={text}
+          value={text} // value={ val }
         />
         ...
       </Wrapper>
