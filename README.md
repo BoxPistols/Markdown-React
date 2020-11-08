@@ -354,6 +354,26 @@ export const Editor: React.FC = () => {
 
 ---
 
+## Local Storage
+
+```js
+
+const StorageKey = 'pages/editor:text' // path:valueName
+
+// init = localStorage.getItem(const)
+const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+
+```
+---
+
 ## Markdown
 
 `$ yarn add react-markdown`
+
+```json
+import * as ReactMarkdown from 'react-markdown'
+...
+<Preview>
+  <ReactMarkdown source={text}/>
+</Preview>
+```
