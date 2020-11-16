@@ -321,10 +321,17 @@ export const Editor: React.FC = () => {
 
 ## Hooks(useState)
 
-```js
-const [value, setValue] = useState < string > 'initial value'
+### useState is ?
 
-const [値, 値をセットする関数] = useState < 扱う状態の型 > 初期値
+- React Status Controller function
+- hook is React 16.8 ~
+- Dont't use class
+
+```js
+const [value, setValue] = useState <string> 'initial value'
+
+const [値, 値をセットする関数] = useState < 扱う状態の型 > 初期値`
+useState<string> = TypeScriptのジェネリクス（総称型）という型定義の方法 = 型を抽象化
 
 example:
 - useState<number>
@@ -370,7 +377,7 @@ export const Editor: React.FC = () => {
   - set key `localStorage.setItem(Key, change)`
     - trigger `const change = event.target.value`
 
-useState 初期設定
+useState の初期設定
 
 ```js
 // 重複防止　規則 -> ファイルパス：値の名前
@@ -383,12 +390,35 @@ const [text, setText] =
 ```
 
 Save
+
 ```ts
 onChange={(event) => {
   const changedText = event.target.value
   localStorage.setItem(StorageKey, changedText)
   setText(changedText)
 }}
+```
+
+## Custom Hook
+
+new -> src/hooks/use_state_with_storage.ts
+
+```ts
+import { useState } from 'react'
+//  関数use...を定義
+export const useStateWithStorage = (
+  init: string, // 初期値
+  key: string, 　// 保存キー for localStorage
+): [string, (s: string) => void] => { // カスタムフック 戻り値
+  const [value, setValue] = useState<string>(localStorage.getItem(key) || init)
+
+  const setValueWithStorage = (nextValue: string): void => {
+    setValue(nextValue)
+    localStorage.setItem(key, nextValue)
+  }
+
+  return [value, setValueWithStorage]
+}
 ```
 
 ---
