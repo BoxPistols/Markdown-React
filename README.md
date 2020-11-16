@@ -356,14 +356,41 @@ export const Editor: React.FC = () => {
 
 ## Local Storage
 
-```js
+### Web Storage is KeyValue Store
 
+- View value or save value of Set key,
+- Web Storage
+  - sessionStotage
+    - on opne browser
+    - if close is delete
+  - localStorage 　<- use this
+    - forever
+    - Max 5MB(Chrome)
+  - get key `localStorage.getItem(Key)`
+  - set key `localStorage.setItem(Key, change)`
+    - trigger `const change = event.target.value`
+
+useState 初期設定
+
+```js
+// 重複防止　規則 -> ファイルパス：値の名前
 const StorageKey = 'pages/editor:text' // path:valueName
 
 // init = localStorage.getItem(const)
-const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
-
+const [text, setText] =
+  useState < string > (localStorage.getItem(StorageKey) || '')
+// 初期値のセット
 ```
+
+Save
+```ts
+onChange={(event) => {
+  const changedText = event.target.value
+  localStorage.setItem(StorageKey, changedText)
+  setText(changedText)
+}}
+```
+
 ---
 
 ## Markdown
