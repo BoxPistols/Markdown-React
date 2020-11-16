@@ -410,13 +410,14 @@ export const useStateWithStorage = (
   init: string, // 初期値
   key: string, 　// 保存キー for localStorage
 ): [string, (s: string) => void] => { // カスタムフック 戻り値
+// useState 呼び出し
   const [value, setValue] = useState<string>(localStorage.getItem(key) || init)
-
+ //　useStateから取得した関数＋保存
   const setValueWithStorage = (nextValue: string): void => {
     setValue(nextValue)
     localStorage.setItem(key, nextValue)
   }
-
+  // 更新関数
   return [value, setValueWithStorage]
 }
 ```
