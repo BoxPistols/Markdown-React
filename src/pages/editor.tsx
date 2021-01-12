@@ -13,6 +13,7 @@ const Header = styled.header`
   position: fixed;
   right: 0;
   top: 0;
+  font-family: sans-serif
 `
 
 const Wrapper = styled.div`
