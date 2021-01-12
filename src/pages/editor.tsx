@@ -1,18 +1,18 @@
 import * as React from 'react'
 import styled from 'styled-components'
 const { useState } = React
+import { fx_center, colors } from '../components/block'
 
 // ===== Styling Start =====
 const texColor = 'ghostwhite'
 
-const fx_center = () => {
+/* const fx_center = () => {
     return `
     display: flex;
     align-items: center;
     justify-content: center;
 `
-}
-
+} */
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 50% 1fr;
@@ -28,6 +28,7 @@ const Header = styled.header`
 `
 const Header__Mol_Title = styled.div`
     ${fx_center}
+    color: ${colors.main_color};
     height: 60px;
     font-size: 24px;
 `
