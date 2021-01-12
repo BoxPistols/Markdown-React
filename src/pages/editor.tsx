@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
+const { useState } = React
 
+// ===== Styling Start =====
 const texColor = 'ghostwhite'
 
 const fx_center = () => {
@@ -29,7 +31,6 @@ const Header__Mol_Title = styled.div`
     height: 60px;
     font-size: 24px;
 `
-
 const TextArea__Org = styled.div`
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -61,17 +62,30 @@ const Footer = styled.footer`
     ${fx_center}
     background-color: #111;
 `
+// ===== Styling End =====
+
 export const Editor: React.FC = () => {
+    const [text, setText] = useState<string>(' ')
     return (
         <>
             <Wrapper>
                 <Header>
-                    <Header__Mol_Title>Markdown Editor</Header__Mol_Title>
+                    <Header__Mol_Title>
+                        Markdown Editor
+                    </Header__Mol_Title>
                 </Header>
                 <TextArea__Org>
-                    <TextArea value="テキスト入力エリア" />
+                    <TextArea
+                        onChange={(e) => {
+                            setText(e.target.value)
+                        }}
+                        value={text}
+                    />
                 </TextArea__Org>
-                <Preview>プレビューエリア</Preview>
+                <Preview>
+                    プレビューエリア
+                    <p>{text}</p>
+                </Preview>
                 <Footer>footer</Footer>
             </Wrapper>
         </>
