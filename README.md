@@ -226,9 +226,9 @@ render(Main, document.getElementById('app'))
 ## View & Atomic
 
 ```js
-$ mkdir src/pages
-$ mkdir src/components
-$ touch src/pages/editor.tsx
+mkdir src/pages
+mkdir src/components
+touch src/pages/editor.tsx
 ```
 
 src/index.tsx
