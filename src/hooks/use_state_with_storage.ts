@@ -26,5 +26,5 @@ export const useStateWithStorage = (
         localStorage.setItem(key, nextValue) // 保存
     }
 
-    return [value, setStateWithStorage] // 返り値[値, 保存関数]
+    return [value, setStateWithStorage] // 返り値[値, 更新関数]
 }

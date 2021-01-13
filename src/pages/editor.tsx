@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import * as ui from '../components/ui'
-const { useState } = React
+// const { useState } = React
+import { useStateWithStorage } from '../hooks/use_state_with_storage'
 
 // ===== Styling Start =====
 const texColor = 'ghostwhite'
@@ -64,29 +65,16 @@ const Footer = styled.footer`
 
 export const Editor: React.FC = () => {
     const StorageKey = 'pages/editor:text'
-    const [text, setText] = useState<string>(
-        localStorage.getItem(StorageKey) || ''
-    )
+    const [text, setText] = useStateWithStorage('', StorageKey)
     return (
         <>
             <Wrapper>
                 <Header>
-                    <Header__Mol_Title>
-                        Markdown Editor
-                    </Header__Mol_Title>
+                    <Header__Mol_Title>Markdown Editor</Header__Mol_Title>
                 </Header>
                 <TextArea__Org>
                     <TextArea
-                        onChange={(e) => {
-                            // setText(e.target.value)
-                            const changeText =
-                                e.target.value
-                            localStorage.setItem(
-                                StorageKey,
-                                changeText
-                            )
-                            setText(changeText)
-                        }}
+                        onChange={(event) => setText(event.target.value)}
                         value={text}
                     />
                 </TextArea__Org>

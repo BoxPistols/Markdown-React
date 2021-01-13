@@ -372,6 +372,49 @@ log:
 - dv/re__011-localStorage
 - commit: e0ba73a
 
+## Custom Hook
+
+create `src/hooks/use_state_with_storage.ts`
+
+```tsx
+// useHoge useで始める
+export const useStateWithStorage = (
+    // カスタムフック関数の定義
+    init: string, // 初期値 型
+    key: string // localStorageのキー
+): [string, (s: string) => void] => {
+    // カスタムフックの戻り値
+    const [value, setValue] = useState<string>( // useStateを呼び出す
+        localStorage.getItem(key) || init // localStorageの取得
+    )
+
+    // useStateから取得した関数 + loalStorageへの保存
+    const setStateWithStorage = (
+        nextValue: string // 新しい値 型
+    ): void => {
+        // 戻り値
+        setValue(nextValue) // ステータス変更(新しい値)
+        localStorage.setItem(key, nextValue) // 保存
+    }
+
+    return [value, setStateWithStorage] // 返り値[値, 更新関数]
+}
+```
+
+- edit.tsx
+
+```tsx
+import { useStateWithStorage } from '../hooks/use_state_with_storage'
+
+const StorageKey = 'pages/editor:text'
+const [text, setText] = useStateWithStorage('', StorageKey)
+
+<TextArea
+    onChange={(event) => setText(event.target.value)}
+    value={text}
+/>
+```
+
 <br>
 <br>
 <br>
