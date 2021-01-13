@@ -347,7 +347,7 @@ btanch:
 
 - editer.tsx
 
-
+```tsx
 const StorageKey = 'pages/editor:text'
 // ↑ key Name for local Storage = path:value
 
@@ -358,8 +358,6 @@ const [text, setText] = useState<string>(
 //      * first time is null => || ''
  ```
 
-
-
 ```tsx
 onChange={(event) => {
   const changedText = event.target.value
@@ -368,6 +366,11 @@ onChange={(event) => {
   setText(changedText)
   // save value if change value use State function[setText]
   ```
+
+log:
+
+- dv/re__011-localStorage
+- commit: e0ba73a
 
 <br>
 <br>
