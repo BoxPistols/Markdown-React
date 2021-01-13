@@ -2,7 +2,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import * as ui from '../components/ui'
 // const { useState } = React
+// Custom Hook
 import { useStateWithStorage } from '../hooks/use_state_with_storage'
+import * as ReactMarkdown from 'react-markdown'
 
 // ===== Styling Start =====
 const texColor = 'ghostwhite'
@@ -37,7 +39,7 @@ const TextArea__Org = styled.div`
 const TextArea = styled.textarea`
     ${ui.block.df}
     ${ui.bgc(ui.c.gray.g900)};
-    ${ui.fz(18)};
+    ${ui.fz(16)};
     color: ${texColor};
     width: 100%;
     height: 100%;
@@ -52,8 +54,10 @@ const Preview = styled.div`
     // col, row
     ${ui.grid(2, 3, 2, 3)}
     padding: 24px;
-    font-size: 20px;
+    ${ui.fz(18)};
     background-color: #212;
+    line-height: 1.75;
+    margin-bottom: 16px;
 `
 const Footer = styled.footer`
     grid-column: 1 / 4;
@@ -79,8 +83,7 @@ export const Editor: React.FC = () => {
                     />
                 </TextArea__Org>
                 <Preview>
-                    プレビューエリア
-                    <p>{text}</p>
+                    <ReactMarkdown source={text} />
                 </Preview>
                 <Footer>footer</Footer>
             </Wrapper>

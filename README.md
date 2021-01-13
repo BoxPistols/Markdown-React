@@ -372,7 +372,9 @@ log:
 - dv/re__011-localStorage
 - commit: e0ba73a
 
-## Custom Hook
+## [WIP] Custom Hook
+
+- [ ] re:input
 
 create `src/hooks/use_state_with_storage.ts`
 
@@ -414,6 +416,24 @@ const [text, setText] = useStateWithStorage('', StorageKey)
     value={text}
 />
 ```
+
+## React-MarkDown
+
+<https://github.com/remarkjs/react-markdown>
+
+`yarn add react-markdown`
+
+```tsx
+ import * as ReactMarkdown from 'react-markdown'
+
+<Preview>
+    <ReactMarkdown source={text} />
+</Preview>
+ ```
+
+TODO:
+
+- [ ] highlight
 
 <br>
 <br>
