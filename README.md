@@ -433,7 +433,7 @@ const [text, setText] = useStateWithStorage('', StorageKey)
 
 TODO:
 
-- [ ] highlight
+- [ ] highlight for Code
 
 <br>
 <br>
