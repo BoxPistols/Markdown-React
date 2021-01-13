@@ -434,6 +434,7 @@ const [text, setText] = useStateWithStorage('', StorageKey)
 TODO:
 
 - [ ] highlight for Code
+- [ ] Preview Design
 
 <br>
 <br>
