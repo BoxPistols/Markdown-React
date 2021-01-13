@@ -5,11 +5,9 @@ import { createGlobalStyle } from 'styled-components'
 import { Editor } from './pages/editor'
 
 const GlobalStyle = createGlobalStyle`
-body{
-    fontFamily: sans-serif,
-}
 *{
     margin: 0;
+    box-sizing: border-box;
 }
 `
 const Main = (

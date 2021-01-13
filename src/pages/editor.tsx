@@ -63,7 +63,10 @@ const Footer = styled.footer`
 // ===== Styling End =====
 
 export const Editor: React.FC = () => {
-    const [text, setText] = useState<string>(' ')
+    const StorageKey = 'pages/editor:text'
+    const [text, setText] = useState<string>(
+        localStorage.getItem(StorageKey) || ''
+    )
     return (
         <>
             <Wrapper>
@@ -75,7 +78,14 @@ export const Editor: React.FC = () => {
                 <TextArea__Org>
                     <TextArea
                         onChange={(e) => {
-                            setText(e.target.value)
+                            // setText(e.target.value)
+                            const changeText =
+                                e.target.value
+                            localStorage.setItem(
+                                StorageKey,
+                                changeText
+                            )
+                            setText(changeText)
                         }}
                         value={text}
                     />

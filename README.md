@@ -258,7 +258,7 @@ render(Main, document.getElementById('app'))
 
 src/pages/editor.tsx
 
---> UpDate on branch `dv/re__011-localStorage` ← Create UI Modules 21/1/13
+--> UpDate on branch `dv/re__setting-for-UI-Component` ← Create UI Modules 21/1/13
 
 ```tsx
 import * as React from 'react'
@@ -339,3 +339,38 @@ CSS Use on tsx Flow
 - Calc fonsize px to rem of body
 
 ---
+
+## Local Storage
+
+btanch:
+`dv/re__011-localStorage`
+
+- editer.tsx
+
+
+const StorageKey = 'pages/editor:text'
+// ↑ key Name for local Storage = path:value
+
+const [text, setText] = useState<string>(
+    localStorage.getItem(StorageKey) || ''
+)
+// init = get value onn local Storage
+//      * first time is null => || ''
+ ```
+
+
+
+```tsx
+onChange={(event) => {
+  const changedText = event.target.value
+  // input value
+  localStorage.setItem(StorageKey, changedText)
+  setText(changedText)
+  // save value if change value use State function[setText]
+  ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
