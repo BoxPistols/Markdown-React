@@ -10,8 +10,6 @@ body{
 }
 *{
     margin: 0;
-    vertical-align: baseline;
-    box-sizing: border-box;
 }
 `
 const Main = (

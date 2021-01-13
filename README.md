@@ -258,6 +258,8 @@ render(Main, document.getElementById('app'))
 
 src/pages/editor.tsx
 
+--> UpDate on branch `dv/re__011-localStorage` ← Create UI Modules 21/1/13
+
 ```tsx
 import * as React from 'react'
 import styled from 'styled-components'
@@ -316,3 +318,14 @@ export const Editor: React.FC = () => {
   )
 }
 ```
+
+---
+
+## Memo
+
+2021/1/13
+
+CSS Use on tsx Flow
+<https://maku.blog/p/eu4cksy/>
+
+---
