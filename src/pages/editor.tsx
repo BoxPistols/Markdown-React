@@ -11,6 +11,7 @@ const Wrapper = styled.div`
     ${ui.block.dg}
     ${ui.bgc(ui.c.gray.g800)};
     color: ${texColor};
+    // TODO: Autoprefix for IE
     grid-template-columns: 50% 1fr;
     grid-template-rows: 60px 1fr 40px;
     min-height: 100vh;
