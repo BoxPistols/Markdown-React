@@ -1,19 +1,30 @@
 import { useState } from 'react'
 
+/**
+ *
+ * @param init 初期値
+ * @param key localStorageの保存用キー
+ */
+
+// useHoge useで始める
 export const useStateWithStorage = (
-    init: string,
-    key: string
+    // カスタムフック関数の定義
+    init: string, // 初期値 型
+    key: string // localStorageのキー
 ): [string, (s: string) => void] => {
-    const [value, setValue] = useState<string>(
-        localStorage.getItem(key) || init
+    // カスタムフックの戻り値
+    const [value, setValue] = useState<string>( // useStateを呼び出す
+        localStorage.getItem(key) || init // localStorageの取得
     )
 
+    // useStateから取得した関数 + loalStorageへの保存
     const setStateWithStorage = (
-        nextValue: string
+        nextValue: string // 新しい値 型
     ): void => {
-        setValue(nextValue)
-        localStorage.setItem(key, nextValue)
+        // 戻り値
+        setValue(nextValue) // ステータス変更(新しい値)
+        localStorage.setItem(key, nextValue) // 保存
     }
 
-    return [value, setStateWithStorage]
+    return [value, setStateWithStorage] // 返り値[値, 保存関数]
 }
