@@ -45,6 +45,7 @@ const TextArea = styled.textarea`
     height: 100%;
     padding: 24px;
     border: none;
+    resize: none;
     &:hover {
         background-color: #222;
         transition: 0.3s;
@@ -57,7 +58,6 @@ const Preview = styled.div`
     ${ui.fz(18)};
     background-color: #212;
     line-height: 1.75;
-    margin-bottom: 16px;
 `
 const Footer = styled.footer`
     grid-column: 1 / 4;
