@@ -226,9 +226,9 @@ render(Main, document.getElementById('app'))
 ## View & Atomic
 
 ```js
-$ mkdir src/pages
-$ mkdir src/components
-$ touch src/pages/editor.tsx
+mkdir src/pages
+mkdir src/components
+touch src/pages/editor.tsx
 ```
 
 src/index.tsx
@@ -257,6 +257,8 @@ render(Main, document.getElementById('app'))
 ```
 
 src/pages/editor.tsx
+
+--> UpDate on branch `dv/re__setting-for-UI-Component` ← Create UI Modules 21/1/13
 
 ```tsx
 import * as React from 'react'
@@ -319,61 +321,150 @@ export const Editor: React.FC = () => {
 
 ---
 
-## Hooks(useState)
+## Memo
 
-```js
-const [value, setValue] = useState < string > 'initial value'
+2021/1/13
 
-const [値, 値をセットする関数] = useState < 扱う状態の型 > 初期値
+CSS Use on tsx Flow
+<https://maku.blog/p/eu4cksy/>
 
-example:
-- useState<number>
-- useState<{ key1: string, key2: number }>
-```
+---
 
-editor.tsx
+## Origin UI Components
 
-```tsx
-const { useState } = React // import useState
-export const Editor: React.FC = () => {
-  const [text, setText] = useState<string>('') // add [val, setFunc] = useState<type>(init)
-  return (
-    <>
-      ...
-      <Wrapper>
-        <TextArea
-          onChange={(event) => { // event
-            setText(event.target.value) // setFunc(target.val)
-          }}
-          value={text} // value={val}
-        />
-        ...
-      </Wrapper>
-    </>...
-```
+`src/components/ui.js`
+
+- Common UI
+- Mixin Function
+- Calc fonsize px to rem of body
 
 ---
 
 ## Local Storage
 
-```js
+btanch:
+`dv/re__011-localStorage`
 
-const StorageKey = 'pages/editor:text' // path:valueName
+- editer.tsx
 
-// init = localStorage.getItem(const)
-const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+```tsx
+const StorageKey = 'pages/editor:text'
+// ↑ key Name for local Storage = path:value
 
+const [text, setText] = useState<string>(
+    localStorage.getItem(StorageKey) || ''
+)
+// init = get value onn local Storage
+//      * first time is null => || ''
+ ```
+
+```tsx
+onChange={(event) => {
+  const changedText = event.target.value
+  // input value
+  localStorage.setItem(StorageKey, changedText)
+  setText(changedText)
+  // save value if change value use State function[setText]
+  ```
+
+log:
+
+- dv/re__011-localStorage
+- commit: e0ba73a
+
+## [WIP] Custom Hook
+
+- [ ] re:input
+
+create `src/hooks/use_state_with_storage.ts`
+
+```tsx
+// useHoge useで始める
+export const useStateWithStorage = (
+    // カスタムフック関数の定義
+    init: string, // 初期値 型
+    key: string // localStorageのキー
+): [string, (s: string) => void] => {
+    // カスタムフックの戻り値
+    const [value, setValue] = useState<string>( // useStateを呼び出す
+        localStorage.getItem(key) || init // localStorageの取得
+    )
+
+    // useStateから取得した関数 + loalStorageへの保存
+    const setStateWithStorage = (
+        nextValue: string // 新しい値 型
+    ): void => {
+        // 戻り値
+        setValue(nextValue) // ステータス変更(新しい値)
+        localStorage.setItem(key, nextValue) // 保存
+    }
+
+    return [value, setStateWithStorage] // 返り値[値, 更新関数]
+}
 ```
----
 
-## Markdown
+- edit.tsx
 
-`$ yarn add react-markdown`
+```tsx
+import { useStateWithStorage } from '../hooks/use_state_with_storage'
 
-```json
-import * as ReactMarkdown from 'react-markdown'
-...
+const StorageKey = 'pages/editor:text'
+const [text, setText] = useStateWithStorage('', StorageKey)
+
+<TextArea
+    onChange={(event) => setText(event.target.value)}
+    value={text}
+/>
+```
+
+## React-MarkDown
+
+<https://github.com/remarkjs/react-markdown>
+
+`yarn add react-markdown`
+
+```tsx
+ import * as ReactMarkdown from 'react-markdown'
+
 <Preview>
-  <ReactMarkdown source={text}/>
+    <ReactMarkdown source={text} />
 </Preview>
+ ```
+
+TODO:
+
+- [ ] highlight for Code
+- [ ] Preview Design
+
+## Index DB
+
+`yarn add dexie`
+
+- mkdir src/indexeddb
+- touch src/indexeddb/memos.ts
+
+```ts
+import Dexie from 'dexie'
+
+export interface MemoRecord {
+    datetime: string
+    title: string
+    text: string
+}
+
+const database = new Dexie('markdown-editor')
+database.version(1).stores({ memos: '&datetime' })
+const memos: Dexie.Table<MemoRecord, string> = database.table('memos')
+
+export const putMemo = async (title: string, text: string): Promise<void> => {
+    const datetime = new Date().toISOString()
+    await memos.put({ datetime, title, text })
+}
 ```
+
+
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -1,74 +1,94 @@
 import * as React from 'react'
 import styled from 'styled-components'
-const { useState } = React
-
+import * as ui from '../components/ui'
+// const { useState } = React
+// Custom Hook
+import { useStateWithStorage } from '../hooks/use_state_with_storage'
 import * as ReactMarkdown from 'react-markdown'
 
-const Header = styled.header`
-  font-size: 1.5rem;
-  height: 2rem;
-  left: 0;
-  line-height: 2rem;
-  padding: 0.5rem 1rem;
-  position: fixed;
-  right: 0;
-  top: 0;
-  font-family: sans-serif
-`
+// ===== Styling Start =====
+const texColor = 'ghostwhite'
 
 const Wrapper = styled.div`
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 3rem;
+    ${ui.fz(16)};
+    ${ui.block.dg}
+    ${ui.bgc(ui.c.gray.g800)};
+    color: ${texColor};
+    // TODO: Autoprefix for IE
+    grid-template-columns: 50% 1fr;
+    grid-template-rows: 60px 1fr 40px;
+    min-height: 100vh;
 `
-
+const Header = styled.header`
+    // col(Horizontal), row(Vertical)
+    ${ui.grid(1, 4, 1, 2)};
+    ${ui.bgc(ui.c.gray.g400)};
+`
+const Header__Mol_Title = styled.div`
+    ${ui.fx_center}
+    ${ui.color(ui.c.main)};
+    ${ui.fz(24)};
+    ${ui.bgc(ui.c.dark)};
+    height: 60px;
+`
+// Atomic
+const TextArea__Org = styled.div`
+    // col(Horizontal), row(Vertical)
+    ${ui.grid(1, 2, 2, 3)}
+`
 const TextArea = styled.textarea`
-  border-right: 1px solid silver;
-  border-top: 1px solid silver;
-  bottom: 0;
-  font-size: 1rem;
-  left: 0;
-  padding: 0.5rem;
-  position: absolute;
-  top: 0;
-  width: 50vw;
+    ${ui.block.df}
+    ${ui.bgc(ui.c.gray.g900)};
+    ${ui.fz(16)};
+    color: ${texColor};
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    border: none;
+    resize: none;
+    &:hover {
+        background-color: #222;
+        transition: 0.3s;
+    }
 `
-
 const Preview = styled.div`
-  border-top: 1px solid silver;
-  bottom: 0;
-  overflow-y: scroll;
-  padding: 1rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50vw;
+    // col, row
+    ${ui.grid(2, 3, 2, 3)}
+    padding: 24px;
+    ${ui.fz(18)};
+    background-color: #212;
+    line-height: 1.75;
 `
+const Footer = styled.footer`
+    grid-column: 1 / 4;
+    grid-row: 3 / 4;
+    ${ui.fx_center}
+    background-color: #111;
+`
+// ===== Styling End =====
 
 const StorageKey = 'pages/editor:text'
 
 export const Editor: React.FC = () => {
-  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
-  return (
-    <>
-      <Header>
-        Markdown Editor
-      </Header>
-      <Wrapper>
-        <TextArea
-          onChange={(event) => {
-            const changedText = event.target.value
-            localStorage.setItem(StorageKey, changedText)
-            setText(event.target.value)
-          }}
-          value={text}
-        />
-        <Preview>
-          <ReactMarkdown source={text}/>
-        </Preview>
-      </Wrapper>
-    </>
-  )
+    const StorageKey = 'pages/editor:text'
+    const [text, setText] = useStateWithStorage('', StorageKey)
+    return (
+        <>
+            <Wrapper>
+                <Header>
+                    <Header__Mol_Title>Markdown Editor</Header__Mol_Title>
+                </Header>
+                <TextArea__Org>
+                    <TextArea
+                        onChange={(event) => setText(event.target.value)}
+                        value={text}
+                    />
+                </TextArea__Org>
+                <Preview>
+                    <ReactMarkdown source={text} />
+                </Preview>
+                <Footer>footer</Footer>
+            </Wrapper>
+        </>
+    )
 }
