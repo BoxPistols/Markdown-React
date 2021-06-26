@@ -45,11 +45,12 @@ const Preview = styled.div`
   top: 0;
   width: 50vw;
 `
-
+// 一意のバリュー名 ＝ キーの変数
 const StorageKey = 'pages/editor:text'
 
 export const Editor: React.FC = () => {
-  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+  // useState 値, ステート変化値 <文字列> get Item（キー名で取り出す） or カラ
+  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || "")
   return (
     <>
       <Header>
@@ -57,11 +58,16 @@ export const Editor: React.FC = () => {
       </Header>
       <Wrapper>
         <TextArea
-          onChange={(event) => {
-            const changedText = event.target.value
+        // 変化の取得
+          onChange={(e) => {
+            // 入力エリアの値
+            const changedText = e.target.value
+            // set Item（キー名で保存、入力エリアの値を）
             localStorage.setItem(StorageKey, changedText)
-            setText(event.target.value)
+            // ステート変化値（は入力エリアの値）
+            setText(changedText)
           }}
+          // 表示する値はステート値
           value={text}
         />
         <Preview>
