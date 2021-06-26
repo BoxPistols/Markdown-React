@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const { useState } = React
 
 import * as ReactMarkdown from 'react-markdown'
+import { useStorage } from '../hooks/use_state_with_storage'
 
 const Header = styled.header`
   font-size: 1.5rem;
@@ -46,32 +47,35 @@ const Preview = styled.div`
   width: 50vw;
 `
 // 一意のバリュー名 ＝ キーの変数
-const StorageKey = 'pages/editor:text'
+const StorageKey = 'ReactMarkDown'
 
 export const Editor: React.FC = () => {
   // useState 値, ステート変化値 <文字列> get Item（キー名で取り出す） or カラ
-  const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || "")
+  // const [text, setText] = useState<string>(localStorage.getItem(StorageKey) || '')
+  const [text, setText] = useStorage('', StorageKey)
+
   return (
     <>
-      <Header>
-        Markdown Editor
-      </Header>
+      <Header>Markdown Editor</Header>
       <Wrapper>
         <TextArea
-        // 変化の取得
-          onChange={(e) => {
-            // 入力エリアの値
-            const changedText = e.target.value
-            // set Item（キー名で保存、入力エリアの値を）
-            localStorage.setItem(StorageKey, changedText)
-            // ステート変化値（は入力エリアの値）
-            setText(changedText)
-          }}
+          // 変化の取得
+          // onChange={(e) => {
+          //   // 入力エリアの値
+          //   const changedText = e.target.value
+          //   // set Item（キー名で保存、入力エリアの値を）
+          //   localStorage.setItem(StorageKey, changedText)
+          //   // ステート変化値（は入力エリアの値）
+          //   setText(changedText)
+          // }}
           // 表示する値はステート値
+          onChange={(e) => {
+            setText(e.target.value)
+          }}
           value={text}
         />
         <Preview>
-          <ReactMarkdown source={text}/>
+          <ReactMarkdown source={text} />
         </Preview>
       </Wrapper>
     </>
