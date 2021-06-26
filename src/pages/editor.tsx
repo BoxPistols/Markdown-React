@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 const { useState } = React
-
 import * as ReactMarkdown from 'react-markdown'
 import { useStorage } from '../hooks/use_state_with_storage'
 
@@ -75,7 +74,7 @@ export const Editor: React.FC = () => {
           value={text}
         />
         <Preview>
-          <ReactMarkdown source={text} />
+          <ReactMarkdown>{text}</ReactMarkdown>
         </Preview>
       </Wrapper>
     </>
