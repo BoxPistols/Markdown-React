@@ -11,12 +11,12 @@ const StyledButton = styled.button`
     min-width: 5rem;
     padding: 0 1rem;
 `
-
+// 渡すパラメーターの型の定義
 interface Props {
     children: string
     onClick: () => void
 }
-
+// React.FC<Props> 引数の props は Propsである型定義
 export const Button: React.FC<Props> = (props) => (
     <StyledButton onClick={props.onClick}>{props.children}</StyledButton>
 )
