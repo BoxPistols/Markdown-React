@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     ${ui.bgc(ui.c.gray.g800)};
     color: ${texColor};
     // TODO: Autoprefix for IE
-    grid-template-columns: 50% 1fr;
+    grid-template-columns: 45% 55%;
     grid-template-rows: 60px 1fr 40px;
     min-height: 100vh;
 `
@@ -35,6 +35,8 @@ const Header__Mol_Title = styled.div`
 const TextArea__Org = styled.div`
     // col(Horizontal), row(Vertical)
     ${ui.grid(1, 2, 2, 3)}
+    /* border: none; */
+    border: 1px solid #333;
 `
 const TextArea = styled.textarea`
     ${ui.block.df}
@@ -46,8 +48,12 @@ const TextArea = styled.textarea`
     padding: 24px;
     border: none;
     resize: none;
+    &:focus-visible {
+        border: none;
+        outline: none;
+    }
     &:hover {
-        background-color: #222;
+        background-color: #123;
         transition: 0.3s;
     }
 `
@@ -58,12 +64,14 @@ const Preview = styled.div`
     ${ui.fz(18)};
     background-color: #212;
     line-height: 1.75;
+    border: 1px solid #333;
 `
 const Footer = styled.footer`
     grid-column: 1 / 4;
     grid-row: 3 / 4;
     ${ui.fx_center}
     background-color: #111;
+    padding-right: 10%;
 `
 // ===== Styling End =====
 
