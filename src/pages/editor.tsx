@@ -5,6 +5,8 @@ import * as ui from '../components/ui'
 // Custom Hook
 import { useStateWithStorage } from '../hooks/use_state_with_storage'
 import * as ReactMarkdown from 'react-markdown'
+import { putMemo } from '../indexeddb/memos'
+import { Button } from '../components/button'
 
 // ===== Styling Start =====
 const texColor = 'ghostwhite'
@@ -21,15 +23,25 @@ const Wrapper = styled.div`
 `
 const Header = styled.header`
     // col(Horizontal), row(Vertical)
-    ${ui.grid(1, 4, 1, 2)};
-    ${ui.bgc(ui.c.gray.g400)};
+    ${ui.grid(1, 4, 1, 2)}
+    ${ui.bgc(ui.c.gray.g400)}
 `
+
 const Header__Mol_Title = styled.div`
     ${ui.fx_center}
     ${ui.color(ui.c.main)};
     ${ui.fz(24)};
     ${ui.bgc(ui.c.dark)};
     height: 60px;
+    ${ui.fx_center}
+    justify-content: space-between;
+    padding: 0 1vw;
+`
+
+const HeaderControl = styled.div`
+    height: 2rem;
+    display: flex;
+    align-content: center;
 `
 // Atomic
 const TextArea__Org = styled.div`
@@ -80,11 +92,22 @@ const StorageKey = 'pages/editor:text'
 export const Editor: React.FC = () => {
     const StorageKey = 'pages/editor:text'
     const [text, setText] = useStateWithStorage('', StorageKey)
+
+    const saveMemo = (): void => {
+        alert(text)
+        putMemo('TITLE', text)
+    }
+
     return (
         <>
             <Wrapper>
                 <Header>
-                    <Header__Mol_Title>Markdown Editor</Header__Mol_Title>
+                    <Header__Mol_Title>
+                        Markdown Editor
+                        <HeaderControl>
+                            <Button onClick={saveMemo}>保存する</Button>
+                        </HeaderControl>
+                    </Header__Mol_Title>
                 </Header>
                 <TextArea__Org>
                     <TextArea
