@@ -20,7 +20,6 @@ export const Editor: React.FC = () => {
     return (
         <>
             <Wrapper>
-<<<<<<< HEAD
                 <UI_Header title="MD Note">
                     <Button onClick={() => setShowModal(true)}>Save</Button>
                     <Link to="/history">
@@ -28,21 +27,6 @@ export const Editor: React.FC = () => {
                     </Link>
                 </UI_Header>
 
-=======
-                <Header>
-                    <Header__Mol_Title>
-                        Markdown Editor
-                        <Header_inner>
-                            <Button onClick={() => setShowModal(true)}>
-                                Save
-                            </Button>
-                            <Link to="/history">
-                                <DivLink>履歴を見る</DivLink>
-                            </Link>
-                        </Header_inner>
-                    </Header__Mol_Title>
-                </Header>
->>>>>>> e55df6d9b341560ac9e60c20354ff5ea2cd51e9b
                 <TextArea__Org>
                     <TextArea
                         onChange={(event) => setText(event.target.value)}
