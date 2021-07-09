@@ -9,7 +9,7 @@ import { putMemo } from '../indexeddb/memos'
 import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
 import { Link } from 'react-router-dom'
-
+//  Components
 import { UI_Header } from '../components/header'
 
 export const Editor: React.FC = () => {
