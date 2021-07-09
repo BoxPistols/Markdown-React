@@ -66,31 +66,12 @@ const Wrapper = styled.div`
     grid-template-rows: 60px 1fr 40px;
     min-height: 100vh;
 `
-const Header = styled.header`
-    /* // col(Horizontal), row(Vertical) */
-    ${ui.grid(1, 4, 1, 2)}
-    ${ui.bgc(ui.c.gray.g400)};
-`
-const Header_inner = styled.div`
-    ${ui.fx_ai_center}
-`
 const DivLink = styled.div`
     ${ui.color(ui.c.accent)};
     ${ui.fz(16)};
     margin-left: 12px;
 `
 
-const Header__Mol_Title = styled.div`
-    /* ${ui.fx_center} */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1vw;
-    ${ui.color(ui.c.main)};
-    ${ui.fz(24)};
-    ${ui.bgc(ui.c.dark)};
-    height: 60px;
-`
 // Atomic
 const TextArea__Org = styled.div`
     /* // col(Horizontal), row(Vertical) */
