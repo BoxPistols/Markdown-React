@@ -8,6 +8,7 @@ const { useState } = React
 import { putMemo } from '../indexeddb/memos'
 import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
+import { Link } from 'react-router-dom'
 
 export const Editor: React.FC = () => {
     const StorageKey = 'pages/editor:text'
@@ -20,7 +21,12 @@ export const Editor: React.FC = () => {
                 <Header>
                     <Header__Mol_Title>
                         Markdown Editor
-                        <Button onClick={() => setShowModal(true)}>Save</Button>
+                        <div>
+                            <Button onClick={() => setShowModal(true)}>
+                                Save
+                            </Button>
+                            <Link to="/history">履歴を見る</Link>
+                        </div>
                     </Header__Mol_Title>
                 </Header>
                 <TextArea__Org>
