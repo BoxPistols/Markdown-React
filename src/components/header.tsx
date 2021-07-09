@@ -27,11 +27,6 @@ const HeaderWrap = styled.header`
 const Header_inner = styled.div`
     ${ui.fx_ai_center}
 `
-const DivLink = styled.div`
-    ${ui.color(ui.c.accent)};
-    ${ui.fz(14)};
-    margin-right: 12px;
-`
 
 const Header__Mol_Title = styled.div`
     ${ui.fx_ai_center}
