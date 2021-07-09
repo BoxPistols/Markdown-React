@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import * as ui from '../components/ui'
 
-export const Header: React.FC<Props> = (props) => {
+export const UI_Header: React.FC<Props> = (props) => {
     return (
         <HeaderWrap>
             <Header__Mol_Title>
@@ -16,8 +17,8 @@ interface Props {
     title: string
     children: React.ReactNode
 }
-// ===== Styling Start =====
 
+// ===== Styling Start =====
 const HeaderWrap = styled.header`
     /* // col(Horizontal), row(Vertical) */
     ${ui.grid(1, 4, 1, 2)}

@@ -10,6 +10,8 @@ import { Button } from '../components/button'
 import { SaveModal } from '../components/save_modal'
 import { Link } from 'react-router-dom'
 
+import { UI_Header } from '../components/header'
+
 export const Editor: React.FC = () => {
     const StorageKey = 'pages/editor:text'
     const [text, setText] = useStateWithStorage('', StorageKey)
@@ -18,28 +20,24 @@ export const Editor: React.FC = () => {
     return (
         <>
             <Wrapper>
-                <Header>
-                    <Header__Mol_Title>
-                        Markdown Editor
-                        <Header_inner>
-                            <Button onClick={() => setShowModal(true)}>
-                                Save
-                            </Button>
-                            <Link to="/history">
-                                <DivLink>履歴を見る</DivLink>
-                            </Link>
-                        </Header_inner>
-                    </Header__Mol_Title>
-                </Header>
+                <UI_Header title="MD Note">
+                    <Button onClick={() => setShowModal(true)}>Save</Button>
+                    <Link to="/history">
+                        <DivLink>履歴を見る</DivLink>
+                    </Link>
+                </UI_Header>
+
                 <TextArea__Org>
                     <TextArea
                         onChange={(event) => setText(event.target.value)}
                         value={text}
                     />
                 </TextArea__Org>
+
                 <Preview>
                     <ReactMarkdown source={text} />
                 </Preview>
+
                 <Footer>footer</Footer>
             </Wrapper>
             {showModal && (
