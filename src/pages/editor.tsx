@@ -21,12 +21,14 @@ export const Editor: React.FC = () => {
                 <Header>
                     <Header__Mol_Title>
                         Markdown Editor
-                        <div>
+                        <Header_inner>
                             <Button onClick={() => setShowModal(true)}>
                                 Save
                             </Button>
-                            <Link to="/history">履歴を見る</Link>
-                        </div>
+                            <Link to="/history">
+                                <DivLink>履歴を見る</DivLink>
+                            </Link>
+                        </Header_inner>
                     </Header__Mol_Title>
                 </Header>
                 <TextArea__Org>
@@ -58,7 +60,7 @@ const texColor = 'ghostwhite'
 
 const Wrapper = styled.div`
     ${ui.fz(16)};
-    ${ui.block.dg}
+    ${ui.block.grid}
     ${ui.bgc(ui.c.gray.g800)};
     color: ${texColor};
     // TODO: Autoprefix for IE
@@ -71,6 +73,15 @@ const Header = styled.header`
     ${ui.grid(1, 4, 1, 2)}
     ${ui.bgc(ui.c.gray.g400)};
 `
+const Header_inner = styled.div`
+    ${ui.fx_ai_center}
+`
+const DivLink = styled.div`
+    ${ui.color(ui.c.accent)};
+    ${ui.fz(16)};
+    margin-left: 12px;
+`
+
 const Header__Mol_Title = styled.div`
     /* ${ui.fx_center} */
     display: flex;
@@ -88,7 +99,7 @@ const TextArea__Org = styled.div`
     ${ui.grid(1, 2, 2, 3)}
 `
 const TextArea = styled.textarea`
-    ${ui.block.df}
+    ${ui.block.flex}
     ${ui.bgc(ui.c.gray.g900)};
     ${ui.fz(16)};
     color: ${texColor};

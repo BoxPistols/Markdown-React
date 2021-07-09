@@ -3,15 +3,20 @@ export const fz = (px) => {
     /* if html element has font-size get root fontSize
      *     => const fontSize = getComputedStyle( document.documentElement).fontSize
      */
-    const fontSize = getComputedStyle(
-        document.querySelector('body')
-    ).fontSize
+    const fontSize = getComputedStyle(document.querySelector('body')).fontSize
     console.log(fontSize)
     // calc for px to rem
     const fzCalc = px / parseFloat(fontSize)
     // 小数点の表示桁数
     const fzNum = parseFloat(fzCalc.toFixed(3))
     return `font-size:` + fzNum + 'rem;'
+}
+
+// UI Component
+export const block = {
+    block: `display: block;`,
+    flex: `display: flex;`,
+    grid: `display: grid;`,
 }
 
 // Mixin
@@ -23,6 +28,36 @@ export const fx_center = () => {
 `
 }
 
+export const fx_jc_center = () => {
+    return `
+    display: flex;
+    justify-content: center;
+`
+}
+
+export const fx_ai_center = () => {
+    return `
+    display: flex;
+    align-items: center;
+    `
+}
+
+// grid  function
+export const grid = (col_start, col_end, row_start, row_end) => {
+    return `
+        // TODO: for IE AutoPrefix or Don't target IE
+        grid-column: ${col_start} / ${col_end}; // Horizontal ↑↓
+        grid-row: ${row_start} / ${row_end}; // Vertical ←→
+    `
+}
+
+// color
+export const color = (c) => {
+    return `
+    color: ${c};
+    `
+}
+
 // bg-color
 export const bgc = (bgColor) => {
     return `
@@ -30,35 +65,7 @@ export const bgc = (bgColor) => {
 `
 }
 
-// color
-export const color = (c) => {
-    return `
-    color: ${c};
-`
-}
-
-// ui function
-export const grid = (
-    col_start,
-    col_end,
-    row_start,
-    row_end
-) => {
-    return `
-        // TODO: for IE AutoPrefix
-        grid-column: ${col_start} / ${col_end}; // Horizontal ↑↓
-        grid-row: ${row_start} / ${row_end}; // Vertical ←→
-    `
-}
-
-// UI Component
-export const block = {
-    db: `display: block;`,
-    df: `display: flex;`,
-    dg: `display: grid;`,
-}
-
-// UI Component
+// colors
 export const c = {
     main: 'tomato',
     accent: '#1EC18D',
