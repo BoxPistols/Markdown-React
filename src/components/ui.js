@@ -4,7 +4,7 @@ export const fz = (px) => {
      *     => const fontSize = getComputedStyle( document.documentElement).fontSize
      */
     const fontSize = getComputedStyle(document.querySelector('body')).fontSize
-    console.log(fontSize)
+    // console.log(fontSize)
     // calc for px to rem
     const fzCalc = px / parseFloat(fontSize)
     // 小数点の表示桁数
